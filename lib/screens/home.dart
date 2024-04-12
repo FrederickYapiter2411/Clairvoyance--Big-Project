@@ -1,3 +1,4 @@
+import 'package:clairvoyant_tubes/screens/inbox.dart';
 import 'package:clairvoyant_tubes/screens/settings.dart';
 import 'package:clairvoyant_tubes/screens/transaction.dart';
 import 'package:flutter/material.dart';
@@ -29,17 +30,13 @@ class _MyHomePageState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('user@example.com'),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.only(right: 20.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Icon(Icons.mail)
-              ],
-            ),
-          ),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const Inbox()));
+              },
+              icon: const Icon(Icons.mail))
         ],
       ),
       body: _children[_selectedIndex],
@@ -87,7 +84,8 @@ class _HomePage extends StatelessWidget {
                 _buildGridItem('Asuransiku', Icons.medical_services),
                 _buildGridItem('Toko Kesehatan', Icons.store_rounded),
                 _buildGridItem('Home Lab & Vaksinasi', Icons.child_care),
-                _buildGridItem('Make offline appointment', Icons.calendar_today),
+                _buildGridItem(
+                    'Make offline appointment', Icons.calendar_today),
                 _buildGridItem('Kesehatan Mental', Icons.mood),
                 _buildGridItem('Kesehatan Kulit', Icons.local_hospital),
                 _buildGridItem('See all', Icons.view_list)

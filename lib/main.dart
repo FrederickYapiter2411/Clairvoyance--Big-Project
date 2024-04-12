@@ -1,7 +1,7 @@
 import 'package:clairvoyant_tubes/screens/home.dart';
 import 'package:flutter/material.dart';
 
-void main (){
+void main() {
   runApp(const MyApp());
 }
 
@@ -12,6 +12,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Home(),
+      theme: ThemeData(useMaterial3: false),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
