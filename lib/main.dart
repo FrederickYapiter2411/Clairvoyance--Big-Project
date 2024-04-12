@@ -1,4 +1,4 @@
-import 'package:clairvoyant_tubes/screens/home.dart';
+import 'package:clairvoyant_tubes/screens/login.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Home(),
+      home: Login(),
       theme: ThemeData(useMaterial3: false),
       debugShowCheckedModeBanner: false,
     );
