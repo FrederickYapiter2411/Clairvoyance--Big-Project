@@ -1,3 +1,4 @@
+import 'package:clairvoyant_tubes/screens/login.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -166,7 +167,10 @@ class ProfilePage extends StatelessWidget {
           const SizedBox(height: 16),
           InkWell(
             onTap: () {
-              // Add code here to log out the user.
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => Login()),
+              );
             },
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 12),
