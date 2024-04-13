@@ -29,14 +29,14 @@ class InboxMessage extends StatelessWidget {
             child: Text(
               judul,
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
             ),
           ),
           Text(tempat,
               style: TextStyle(
                   color: Colors.grey[600], fontWeight: FontWeight.bold)),
           const SizedBox(height: 15),
-          Text("$mulai s/d $selesai", style: TextStyle(color: Colors.grey)),
+          Text("$mulai s/d $selesai", style: const TextStyle(color: Colors.grey)),
           const Spacer(),
           TextButton(
               onPressed: () {

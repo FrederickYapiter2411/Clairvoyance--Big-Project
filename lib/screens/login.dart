@@ -56,13 +56,13 @@ class _LoginState extends State<Login> {
                 decoration: InputDecoration(
                     floatingLabelStyle: TextStyle(color: floatingColor1),
                     labelText: 'Username',
-                    enabledBorder: OutlineInputBorder(),
-                    focusedBorder: OutlineInputBorder(
+                    enabledBorder: const OutlineInputBorder(),
+                    focusedBorder: const OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.redAccent)),
                     errorText: err1),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Focus(
@@ -87,20 +87,20 @@ class _LoginState extends State<Login> {
                 decoration: InputDecoration(
                     floatingLabelStyle: TextStyle(color: floatingColor2),
                     labelText: 'Password',
-                    enabledBorder: OutlineInputBorder(),
-                    focusedBorder: OutlineInputBorder(
+                    enabledBorder: const OutlineInputBorder(),
+                    focusedBorder: const OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.redAccent)),
                     errorText: err2),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             ElevatedButton(
               onPressed: () {
                 FocusScope.of(context).unfocus();
-                if (inputUsername.text != 'testing' ||
-                    inputPassword.text != 'testing') {
+                if (inputUsername.text == "" ||
+                    inputPassword.text == "") {
                   err1 = 'Wrong username and/or password';
                   err2 = 'Wrong username and/or password';
                   setState(() {
@@ -109,31 +109,33 @@ class _LoginState extends State<Login> {
                   });
                 } else {
                   Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => Home()));
+                      MaterialPageRoute(builder: (context) => Home(
+                        username: inputUsername.text,
+                      )));
                 }
               },
-              child: Text('Log In'),
+              child: const Text('Log In'),
               style: ElevatedButton.styleFrom(
-                minimumSize: Size(double.infinity, 50),
+                minimumSize: const Size(double.infinity, 50),
                 foregroundColor: Colors.white,
                 backgroundColor: Colors.blue,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
-            Text(
+            const Text(
               'OR',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             OutlinedButton(
                 onPressed: () {},
                 style: OutlinedButton.styleFrom(
-                    minimumSize: Size(double.infinity, 50)),
-                child: Row(
+                    minimumSize: const Size(double.infinity, 50)),
+                child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(
@@ -145,14 +147,14 @@ class _LoginState extends State<Login> {
                     )
                   ],
                 )),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Don't have an account?"),
-                SizedBox(
+                const Text("Don't have an account?"),
+                const SizedBox(
                   width: 5,
                 ),
                 TextButton(
@@ -160,7 +162,7 @@ class _LoginState extends State<Login> {
                     Navigator.of(context).pushReplacement(
                         MaterialPageRoute(builder: (context) => Register()));
                   },
-                  child: Text('Register'),
+                  child: const Text('Register'),
                   style: TextButton.styleFrom(foregroundColor: Colors.blue),
                 )
               ],

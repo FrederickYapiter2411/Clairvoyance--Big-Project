@@ -122,7 +122,7 @@ class _RegisterState extends State<Register> {
                   });
                 } else {
                   Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => Home()));
+                      MaterialPageRoute(builder: (context) => Home(username: inputUsername.text,)));
                 }
               },
               child: Text('Register'),

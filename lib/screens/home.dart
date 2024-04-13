@@ -5,11 +5,18 @@ import 'package:flutter/material.dart';
 import 'package:clairvoyant_tubes/screens/profile.dart';
 
 class Home extends StatefulWidget {
+  const Home({required this.username});
+
+  final String username;
+
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _MyHomePageState createState() => _MyHomePageState(username1: username);
 }
 
 class _MyHomePageState extends State<Home> {
+  _MyHomePageState({required this.username1});
+
+  final String username1;
   int _selectedIndex = 0;
 
   final List<Widget> _children = [
@@ -29,7 +36,7 @@ class _MyHomePageState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('testing@testing'),
+        title: Text(username1),
         actions: [
           IconButton(
               onPressed: () {
@@ -76,19 +83,17 @@ class _HomePage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Container(
+            
+          ),
           Expanded(
             child: GridView.count(
-              crossAxisCount: 4,
+              crossAxisCount: 2,
               children: [
                 _buildGridItem('chat with doctor', Icons.chat_bubble),
-                _buildGridItem('Asuransiku', Icons.medical_services),
                 _buildGridItem('Toko Kesehatan', Icons.store_rounded),
-                _buildGridItem('Home Lab & Vaksinasi', Icons.child_care),
-                _buildGridItem(
-                    'Make offline appointment', Icons.calendar_today),
+                _buildGridItem('Make offline appointment', Icons.calendar_today),
                 _buildGridItem('Kesehatan Mental', Icons.mood),
-                _buildGridItem('Kesehatan Kulit', Icons.local_hospital),
-                _buildGridItem('See all', Icons.view_list)
               ],
             ),
           ),
