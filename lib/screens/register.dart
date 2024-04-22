@@ -1,26 +1,25 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:clairvoyant_tubes/screens/home.dart';
 import 'package:clairvoyant_tubes/screens/login.dart';
-import 'package:flutter/material.dart';
+import 'package:clairvoyant_tubes/screens/provider.dart'; // Import the UserProvider class
 
-class Register extends StatefulWidget {
-  const Register({super.key});
-
-  @override
-  State<Register> createState() => _RegisterState();
-}
-
-class _RegisterState extends State<Register> {
-  Color floatingColor1 = Colors.grey;
-  Color floatingColor2 = Colors.grey;
-  Color floatingColor3 = Colors.grey;
-  TextEditingController inputUsername = TextEditingController();
-  TextEditingController inputPassword = TextEditingController();
-  TextEditingController finalInputPassword = TextEditingController();
-  String finalTempPassword = '';
-  String? err3 = null;
-
+class Register extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var userProvider = Provider.of<UserProvider>(context);
+
+    TextEditingController inputUsername = TextEditingController();
+    TextEditingController inputPassword = TextEditingController();
+    TextEditingController finalInputPassword = TextEditingController();
+
+    Color floatingColor1 = Colors.grey;
+    Color floatingColor2 = Colors.grey;
+    Color floatingColor3 = Colors.grey;
+
+    String finalTempPassword = '';
+    String? err3;
+
     return Scaffold(
       body: SingleChildScrollView(
         padding: EdgeInsets.all(50),
@@ -32,13 +31,9 @@ class _RegisterState extends State<Register> {
             Focus(
               onFocusChange: (value) {
                 if (value) {
-                  setState(() {
-                    floatingColor1 = Colors.redAccent;
-                  });
+                  floatingColor1 = Colors.redAccent;
                 } else {
-                  setState(() {
-                    floatingColor1 = Colors.grey;
-                  });
+                  floatingColor1 = Colors.grey;
                 }
               },
               child: TextFormField(
@@ -58,13 +53,9 @@ class _RegisterState extends State<Register> {
             Focus(
               onFocusChange: (value) {
                 if (value) {
-                  setState(() {
-                    floatingColor2 = Colors.redAccent;
-                  });
+                  floatingColor2 = Colors.redAccent;
                 } else {
-                  setState(() {
-                    floatingColor2 = Colors.grey;
-                  });
+                  floatingColor2 = Colors.grey;
                 }
               },
               child: TextFormField(
@@ -85,16 +76,12 @@ class _RegisterState extends State<Register> {
             Focus(
               onFocusChange: (value) {
                 if (value) {
-                  setState(() {
-                    floatingColor3 = Colors.redAccent;
-                  });
+                  floatingColor3 = Colors.redAccent;
                 } else {
-                  setState(() {
-                    floatingColor3 = Colors.grey;
-                    if (finalTempPassword != finalInputPassword.text) {
-                      err3 = null;
-                    }
-                  });
+                  floatingColor3 = Colors.grey;
+                  if (finalTempPassword != finalInputPassword.text) {
+                    err3 = null;
+                  }
                 }
               },
               child: TextFormField(
@@ -116,13 +103,16 @@ class _RegisterState extends State<Register> {
               onPressed: () {
                 FocusScope.of(context).unfocus();
                 if (inputPassword.text != finalInputPassword.text) {
-                  setState(() {
-                    err3 = 'Unmatched password';
-                    finalTempPassword = finalInputPassword.text;
-                  });
+                  err3 = 'Unmatched password';
+                  finalTempPassword = finalInputPassword.text;
                 } else {
-                  Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => Home(username: inputUsername.text,)));
+                  userProvider.register(inputUsername.text, inputPassword.text);
+                  if (userProvider.user != null) {
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) => Home(
+                              username: '',
+                            )));
+                  }
                 }
               },
               child: Text('Register'),
