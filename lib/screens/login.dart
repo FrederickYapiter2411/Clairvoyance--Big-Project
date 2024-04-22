@@ -1,26 +1,25 @@
+import 'package:clairvoyant_tubes/screens/provider.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:clairvoyant_tubes/screens/home.dart';
 import 'package:clairvoyant_tubes/screens/register.dart';
-import 'package:flutter/material.dart';
 
-class Login extends StatefulWidget {
-  const Login({super.key});
-
-  @override
-  State<Login> createState() => _LoginState();
-}
-
-class _LoginState extends State<Login> {
-  Color floatingColor1 = Colors.grey;
-  Color floatingColor2 = Colors.grey;
-  TextEditingController inputUsername = TextEditingController();
-  TextEditingController inputPassword = TextEditingController();
-  String tempUsername = '';
-  String tempPassword = '';
-  String? err1 = null;
-  String? err2 = null;
-
+class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var userProvider = Provider.of<UserProvider>(context);
+
+    TextEditingController inputUsername = TextEditingController();
+    TextEditingController inputPassword = TextEditingController();
+
+    Color floatingColor1 = Colors.grey;
+    Color floatingColor2 = Colors.grey;
+
+    String tempUsername = '';
+    String tempPassword = '';
+    String? err1;
+    String? err2;
+
     return Scaffold(
       body: SingleChildScrollView(
         padding: EdgeInsets.all(50),
@@ -37,18 +36,14 @@ class _LoginState extends State<Login> {
             Focus(
               onFocusChange: (value) {
                 if (value) {
-                  setState(() {
-                    floatingColor1 = Colors.redAccent;
-                  });
+                  floatingColor1 = Colors.redAccent;
                 } else {
-                  setState(() {
-                    floatingColor1 = Colors.grey;
-                    if (tempUsername != inputUsername.text ||
-                        tempPassword != inputPassword.text) {
-                      err1 = null;
-                      err2 = null;
-                    }
-                  });
+                  floatingColor1 = Colors.grey;
+                  if (tempUsername != inputUsername.text ||
+                      tempPassword != inputPassword.text) {
+                    err1 = null;
+                    err2 = null;
+                  }
                 }
               },
               child: TextFormField(
@@ -56,30 +51,26 @@ class _LoginState extends State<Login> {
                 decoration: InputDecoration(
                     floatingLabelStyle: TextStyle(color: floatingColor1),
                     labelText: 'Username',
-                    enabledBorder: const OutlineInputBorder(),
-                    focusedBorder: const OutlineInputBorder(
+                    enabledBorder: OutlineInputBorder(),
+                    focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.redAccent)),
                     errorText: err1),
               ),
             ),
-            const SizedBox(
+            SizedBox(
               height: 20,
             ),
             Focus(
               onFocusChange: (value) {
                 if (value) {
-                  setState(() {
-                    floatingColor2 = Colors.redAccent;
-                  });
+                  floatingColor2 = Colors.redAccent;
                 } else {
-                  setState(() {
-                    floatingColor2 = Colors.grey;
-                    if (tempUsername != inputUsername.text ||
-                        tempPassword != inputPassword.text) {
-                      err1 = null;
-                      err2 = null;
-                    }
-                  });
+                  floatingColor2 = Colors.grey;
+                  if (tempUsername != inputUsername.text ||
+                      tempPassword != inputPassword.text) {
+                    err1 = null;
+                    err2 = null;
+                  }
                 }
               },
               child: TextFormField(
@@ -87,55 +78,56 @@ class _LoginState extends State<Login> {
                 decoration: InputDecoration(
                     floatingLabelStyle: TextStyle(color: floatingColor2),
                     labelText: 'Password',
-                    enabledBorder: const OutlineInputBorder(),
-                    focusedBorder: const OutlineInputBorder(
+                    enabledBorder: OutlineInputBorder(),
+                    focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.redAccent)),
                     errorText: err2),
               ),
             ),
-            const SizedBox(
+            SizedBox(
               height: 20,
             ),
             ElevatedButton(
               onPressed: () {
                 FocusScope.of(context).unfocus();
-                if (inputUsername.text == "" ||
-                    inputPassword.text == "") {
+                if (inputUsername.text != 'testing' ||
+                    inputPassword.text != 'testing') {
                   err1 = 'Wrong username and/or password';
                   err2 = 'Wrong username and/or password';
-                  setState(() {
-                    tempUsername = inputUsername.text;
-                    tempPassword = inputPassword.text;
-                  });
+                  tempUsername = inputUsername.text;
+                  tempPassword = inputPassword.text;
                 } else {
-                  Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => Home(
-                        username: inputUsername.text,
-                      )));
+                  userProvider.login(inputUsername.text, inputPassword.text);
+                  if (userProvider.user != null) {
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) => Home(
+                              username: '',
+                            )));
+                  }
                 }
               },
-              child: const Text('Log In'),
+              child: Text('Log In'),
               style: ElevatedButton.styleFrom(
-                minimumSize: const Size(double.infinity, 50),
+                minimumSize: Size(double.infinity, 50),
                 foregroundColor: Colors.white,
                 backgroundColor: Colors.blue,
               ),
             ),
-            const SizedBox(
+            SizedBox(
               height: 15,
             ),
-            const Text(
+            Text(
               'OR',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            const SizedBox(
+            SizedBox(
               height: 15,
             ),
             OutlinedButton(
                 onPressed: () {},
                 style: OutlinedButton.styleFrom(
-                    minimumSize: const Size(double.infinity, 50)),
-                child: const Row(
+                    minimumSize: Size(double.infinity, 50)),
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(
@@ -147,14 +139,14 @@ class _LoginState extends State<Login> {
                     )
                   ],
                 )),
-            const SizedBox(
+            SizedBox(
               height: 20,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text("Don't have an account?"),
-                const SizedBox(
+                Text("Don't have an account?"),
+                SizedBox(
                   width: 5,
                 ),
                 TextButton(
@@ -162,7 +154,7 @@ class _LoginState extends State<Login> {
                     Navigator.of(context).pushReplacement(
                         MaterialPageRoute(builder: (context) => Register()));
                   },
-                  child: const Text('Register'),
+                  child: Text('Register'),
                   style: TextButton.styleFrom(foregroundColor: Colors.blue),
                 )
               ],
