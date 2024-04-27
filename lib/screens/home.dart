@@ -1,6 +1,7 @@
 import 'package:clairvoyant_tubes/screens/chat.dart';
 import 'package:clairvoyant_tubes/screens/inbox.dart';
 import 'package:clairvoyant_tubes/screens/settings.dart';
+import 'package:clairvoyant_tubes/screens/shop.dart';
 import 'package:clairvoyant_tubes/screens/transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:clairvoyant_tubes/screens/profile.dart';
@@ -99,7 +100,13 @@ class _HomePage extends StatelessWidget {
                       'chat with doctor',
                       Icons.chat_bubble,
                     )),
-                _buildGridItem('Toko Kesehatan', Icons.store_rounded),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) => Shop()));
+                  },
+                  child: _buildGridItem('Toko Kesehatan', Icons.store_rounded),
+                ),
                 _buildGridItem(
                     'Make offline appointment', Icons.calendar_today),
                 _buildGridItem('Kesehatan Mental', Icons.mood),
