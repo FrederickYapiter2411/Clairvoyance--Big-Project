@@ -1,8 +1,10 @@
+import 'package:clairvoyant_tubes/screens/chat.dart';
 import 'package:clairvoyant_tubes/screens/inbox.dart';
 import 'package:clairvoyant_tubes/screens/settings.dart';
 import 'package:clairvoyant_tubes/screens/transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:clairvoyant_tubes/screens/profile.dart';
+import 'package:flutter/widgets.dart';
 
 class Home extends StatefulWidget {
   const Home({required this.username});
@@ -83,16 +85,23 @@ class _HomePage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            
-          ),
+          Container(),
           Expanded(
             child: GridView.count(
               crossAxisCount: 2,
               children: [
-                _buildGridItem('chat with doctor', Icons.chat_bubble),
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => ChatPage()));
+                    },
+                    child: _buildGridItem(
+                      'chat with doctor',
+                      Icons.chat_bubble,
+                    )),
                 _buildGridItem('Toko Kesehatan', Icons.store_rounded),
-                _buildGridItem('Make offline appointment', Icons.calendar_today),
+                _buildGridItem(
+                    'Make offline appointment', Icons.calendar_today),
                 _buildGridItem('Kesehatan Mental', Icons.mood),
               ],
             ),
