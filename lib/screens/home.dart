@@ -26,7 +26,7 @@ class _MyHomePageState extends State<Home> {
     _HomePage(),
     TransactionHistory(),
     ProfilePage(),
-    Settings(),
+    SettingsPage(),
   ];
 
   void onTapped(int index) {
