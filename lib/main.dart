@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Clairvoyant',
       home: Login(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
