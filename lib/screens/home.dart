@@ -24,7 +24,9 @@ class _MyHomePageState extends State<Home> {
 
   final List<Widget> _children = [
     _HomePage(),
-    TransactionHistory(),
+    TransactionHistory(
+      selectedItems: [],
+    ),
     ProfilePage(),
     SettingsPage(),
   ];
