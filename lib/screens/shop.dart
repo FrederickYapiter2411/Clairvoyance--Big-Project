@@ -1,6 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:clairvoyant_tubes/screens/cart_page.dart';
 import 'package:clairvoyant_tubes/screens/detail_med.dart';
-import 'package:flutter/material.dart';
 
 class Shop extends StatefulWidget {
   const Shop({Key? key}) : super(key: key);
@@ -148,6 +148,12 @@ class _ShopState extends State<Shop> {
     }
   }
 
+  void updateCartItems(List<Map> newCartItems) {
+    setState(() {
+      cartItems = newCartItems;
+    });
+  }
+
   void filterMedicines(List<String> selectedClassifications) {
     setState(() {
       if (selectedClassifications.isEmpty) {
@@ -171,7 +177,10 @@ class _ShopState extends State<Shop> {
             icon: Icon(Icons.shopping_cart),
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => CartPage(cartItems: cartItems),
+                builder: (context) => CartPage(
+                  cartItems: cartItems,
+                  onCartUpdated: updateCartItems,
+                ),
               ));
             },
           ),
