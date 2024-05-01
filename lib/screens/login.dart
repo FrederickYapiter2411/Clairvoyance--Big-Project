@@ -5,6 +5,8 @@ import 'package:clairvoyant_tubes/screens/home.dart';
 import 'package:clairvoyant_tubes/screens/register.dart';
 
 class Login extends StatelessWidget {
+  const Login({super.key});
+
   @override
   Widget build(BuildContext context) {
     var userProvider = Provider.of<UserProvider>(context);
@@ -49,12 +51,15 @@ class Login extends StatelessWidget {
               child: TextFormField(
                 controller: inputUsername,
                 decoration: InputDecoration(
-                    floatingLabelStyle: TextStyle(color: floatingColor1),
-                    labelText: 'Username',
-                    enabledBorder: OutlineInputBorder(),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.redAccent)),
-                    errorText: err1),
+                  labelText: 'Username',
+                  hintText: inputUsername.text.isEmpty ? 'testing' : null,
+                  hintStyle: TextStyle(color: Colors.grey),
+                  enabledBorder: OutlineInputBorder(),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: floatingColor1),
+                  ),
+                  errorText: err1,
+                ),
               ),
             ),
             SizedBox(
@@ -76,12 +81,15 @@ class Login extends StatelessWidget {
               child: TextFormField(
                 controller: inputPassword,
                 decoration: InputDecoration(
-                    floatingLabelStyle: TextStyle(color: floatingColor2),
-                    labelText: 'Password',
-                    enabledBorder: OutlineInputBorder(),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.redAccent)),
-                    errorText: err2),
+                  labelText: 'Password',
+                  hintText: inputPassword.text.isEmpty ? 'testing' : null,
+                  hintStyle: TextStyle(color: Colors.grey),
+                  enabledBorder: OutlineInputBorder(),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: floatingColor2),
+                  ),
+                  errorText: err2,
+                ),
               ),
             ),
             SizedBox(
@@ -100,9 +108,10 @@ class Login extends StatelessWidget {
                   userProvider.login(inputUsername.text, inputPassword.text);
                   if (userProvider.user != null) {
                     Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (context) => Home(
-                              username: '',
-                            )));
+                      builder: (context) => Home(
+                        username: '',
+                      ),
+                    ));
                   }
                 }
               },
@@ -124,21 +133,23 @@ class Login extends StatelessWidget {
               height: 15,
             ),
             OutlinedButton(
-                onPressed: () {},
-                style: OutlinedButton.styleFrom(
-                    minimumSize: Size(double.infinity, 50)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Text(
-                      'Log In with Gmail',
-                      style: TextStyle(color: Colors.black),
-                    )
-                  ],
-                )),
+              onPressed: () {},
+              style: OutlinedButton.styleFrom(
+                minimumSize: Size(double.infinity, 50),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Text(
+                    'Log In with Gmail',
+                    style: TextStyle(color: Colors.black),
+                  )
+                ],
+              ),
+            ),
             SizedBox(
               height: 20,
             ),
@@ -152,13 +163,14 @@ class Login extends StatelessWidget {
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (context) => Register()));
+                      MaterialPageRoute(builder: (context) => Register()),
+                    );
                   },
                   child: Text('Register'),
                   style: TextButton.styleFrom(foregroundColor: Colors.blue),
-                )
+                ),
               ],
-            )
+            ),
           ],
         ),
       ),
