@@ -42,8 +42,7 @@ class _CartPageState extends State<CartPage> {
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: (context) =>
-                    TransactionHistory(selectedItems: selectedItems),
+                builder: (context) => TransactionHistory(),
               ),
             );
           },

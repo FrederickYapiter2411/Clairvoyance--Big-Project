@@ -5,7 +5,7 @@ import 'package:clairvoyant_tubes/screens/shop.dart';
 import 'package:clairvoyant_tubes/screens/transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:clairvoyant_tubes/screens/profile.dart';
-import 'package:flutter/widgets.dart';
+// import 'package:flutter/widgets.dart';
 
 class Home extends StatefulWidget {
   const Home({required this.username});
@@ -24,9 +24,7 @@ class _MyHomePageState extends State<Home> {
 
   final List<Widget> _children = [
     _HomePage(),
-    TransactionHistory(
-      selectedItems: [],
-    ),
+    TransactionHistory(),
     ProfilePage(),
     SettingsPage(),
   ];
@@ -44,7 +42,7 @@ class _MyHomePageState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor:  Colors.blue,
+        backgroundColor: Colors.blue,
         title: Text(title[_selectedIndex]),
         actions: [
           IconButton(
