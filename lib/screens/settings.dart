@@ -8,45 +8,48 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  bool _darkMode = false;
+  bool DarkMode = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Settings'),
-      ),
+      backgroundColor: DarkMode ? Colors.black : Colors.white,
       body: ListView(
         children: [
           ListTile(
             leading: const Icon(Icons.brightness_4),
-            title: const Text('Dark mode'),
+            title: Text('Dark mode',
+            style: TextStyle(color: !DarkMode ? Colors.black : Colors.white ),),
             trailing: Switch(
-              value: _darkMode,
+              value: DarkMode,
               onChanged: (value) {
                 setState(() {
-                  _darkMode = value;
+                  DarkMode = value;
                 });
               },
+              
             ),
           ),
           ListTile(
             leading: const Icon(Icons.language),
-            title: const Text('Language'),
+            title:  Text('Language',
+            style: TextStyle(color: !DarkMode ? Colors.black : Colors.white ),),
             onTap: () {
               // Handle language selection
             },
           ),
           ListTile(
             leading: const Icon(Icons.notifications),
-            title: const Text('Notifications'),
+            title:  Text('Notifications',
+            style: TextStyle(color: !DarkMode ? Colors.black : Colors.white ),),
             onTap: () {
               // Handle notifications settings
             },
           ),
           ListTile(
             leading: const Icon(Icons.info),
-            title: const Text('About Us'),
+            title:  Text('About Us', 
+            style: TextStyle(color: !DarkMode ? Colors.black : Colors.white ),),
             onTap: () {
               // Handle notifications settings
             },
@@ -56,7 +59,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => Login(),), (route) => false);
               },
               child:
-              const Text("Logout",style: TextStyle(fontSize: 16.0)),
+              const Text("Logout",style: TextStyle(fontSize: 16.0, color: Colors.red)),
           ),
         ],
       ),

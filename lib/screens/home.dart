@@ -37,11 +37,15 @@ class _MyHomePageState extends State<Home> {
     });
   }
 
+  List<String> title = ["Home", "Transaction History", "Profile", "Settings"];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(username1),
+        centerTitle: true,
+        backgroundColor:  Colors.blue,
+        title: Text(title[_selectedIndex]),
         actions: [
           IconButton(
               onPressed: () {
@@ -58,7 +62,7 @@ class _MyHomePageState extends State<Home> {
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Beranda',
+            label: 'Home',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.history),
@@ -66,7 +70,7 @@ class _MyHomePageState extends State<Home> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: 'Profil',
+            label: 'Profile',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
