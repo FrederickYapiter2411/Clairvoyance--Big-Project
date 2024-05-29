@@ -1,67 +1,87 @@
 import 'package:clairvoyant_tubes/screens/login.dart';
+import 'package:clairvoyant_tubes/screens/theme_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
 
-class SettingsPage extends StatefulWidget {
-  @override
-  _SettingsPageState createState() => _SettingsPageState();
-}
-
-class _SettingsPageState extends State<SettingsPage> {
-  bool DarkMode = false;
-
+class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final isDarkMode = themeProvider.isDarkMode;
+
     return Scaffold(
-      backgroundColor: DarkMode ? Colors.black : Colors.white,
-      body: ListView(
-        children: [
-          ListTile(
-            leading: const Icon(Icons.brightness_4),
-            title: Text('Dark mode',
-            style: TextStyle(color: !DarkMode ? Colors.black : Colors.white ),),
-            trailing: Switch(
-              value: DarkMode,
-              onChanged: (value) {
-                setState(() {
-                  DarkMode = value;
-                });
-              },
-              
+      appBar: AppBar(
+        title: Text("Settings"),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: isDarkMode ? Colors.grey[850] : Colors.blue,
+              ),
+              child: Text(
+                'Settings Menu',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
             ),
-          ),
-          ListTile(
-            leading: const Icon(Icons.language),
-            title:  Text('Language',
-            style: TextStyle(color: !DarkMode ? Colors.black : Colors.white ),),
-            onTap: () {
-              // Handle language selection
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.notifications),
-            title:  Text('Notifications',
-            style: TextStyle(color: !DarkMode ? Colors.black : Colors.white ),),
-            onTap: () {
-              // Handle notifications settings
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.info),
-            title:  Text('About Us', 
-            style: TextStyle(color: !DarkMode ? Colors.black : Colors.white ),),
-            onTap: () {
-              // Handle notifications settings
-            },
-          ),
-          TextButton(
-              onPressed: (){
-                Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => Login(),), (route) => false);
+            ListTile(
+              leading: Icon(Icons.brightness_4),
+              title: Text('Dark mode'),
+              trailing: Switch(
+                value: isDarkMode,
+                onChanged: (value) {
+                  themeProvider.toggleDarkMode(value);
+                },
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.language),
+              title: Text('Language'),
+              onTap: () {
+                // Handle language selection
               },
-              child:
-              const Text("Logout",style: TextStyle(fontSize: 16.0, color: Colors.red)),
-          ),
-        ],
+            ),
+            ListTile(
+              leading: Icon(Icons.notifications),
+              title: Text('Notifications'),
+              onTap: () {
+                // Handle notifications settings
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.info),
+              title: Text('About Us'),
+              onTap: () {
+                // Handle about us
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.logout),
+              title: Text(
+                'Logout',
+                style: TextStyle(
+                  color: Colors.red,
+                ),
+              ),
+              onTap: () {
+                Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                    builder: (context) => Login(),
+                  ),
+                  (route) => false,
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+      body: Center(
+        child: Text("Settings Page Content"),
       ),
     );
   }
