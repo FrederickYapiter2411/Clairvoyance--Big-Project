@@ -28,6 +28,30 @@ class _InboxState extends State<Inbox> {
         selesai: "15.00")
   ];
 
+  void _showBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              ListTile(
+                leading: Icon(Icons.delete),
+                title: Text('Delete All Messages'),
+                onTap: () {
+                  // Handle deleting all messages
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,6 +66,11 @@ class _InboxState extends State<Inbox> {
           ...messageDatas
               .map((e) => MessageCard(e.judul, e.tempat, e.mulai, e.selesai)),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => _showBottomSheet(context),
+        child: Icon(Icons.add),
+        backgroundColor: Color.fromARGB(255, 102, 03, 219),
       ),
     );
   }
