@@ -1,25 +1,23 @@
 import 'package:clairvoyant_tubes/screens/chat.dart';
 import 'package:clairvoyant_tubes/screens/inbox.dart';
+import 'package:clairvoyant_tubes/screens/provider.dart';
 import 'package:clairvoyant_tubes/screens/settings.dart';
 import 'package:clairvoyant_tubes/screens/shop.dart';
 import 'package:clairvoyant_tubes/screens/transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:clairvoyant_tubes/screens/profile.dart';
-// import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
-  const Home({required this.username});
+  final User user;
 
-  final String username;
+  Home({Key? key, required this.user}) : super(key: key);
 
   @override
-  _MyHomePageState createState() => _MyHomePageState(username1: username);
+  _HomePageState createState() => _HomePageState();
 }
 
-class _MyHomePageState extends State<Home> {
-  _MyHomePageState({required this.username1});
-
-  final String username1;
+class _HomePageState extends State<Home> {
   int _selectedIndex = 0;
 
   final List<Widget> _children = [
@@ -39,6 +37,9 @@ class _MyHomePageState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    var userProvider = Provider.of<UserProvider>(context);
+    var username = userProvider.user?.username ?? "Guest";
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -53,7 +54,18 @@ class _MyHomePageState extends State<Home> {
               icon: const Icon(Icons.mail))
         ],
       ),
-      body: _children[_selectedIndex],
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              'Welcome, $username!',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+          ),
+          Expanded(child: _children[_selectedIndex]),
+        ],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: onTapped,
         currentIndex: _selectedIndex,
@@ -95,25 +107,51 @@ class _HomePage extends StatelessWidget {
             child: GridView.count(
               crossAxisCount: 2,
               children: [
-                TextButton(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => ChatPage()));
-                    },
-                    child: _buildGridItem(
-                      'chat with doctor',
-                      Icons.chat_bubble,
-                    )),
-                TextButton(
-                  onPressed: () {
+                _buildGridItem(
+                  'Chat with Doctor',
+                  Icons.chat_bubble,
+                  () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => ChatPage()));
+                  },
+                ),
+                _buildGridItem(
+                  'Health Shop',
+                  Icons.store_rounded,
+                  () {
                     Navigator.of(context)
                         .push(MaterialPageRoute(builder: (context) => Shop()));
                   },
-                  child: _buildGridItem('Toko Kesehatan', Icons.store_rounded),
                 ),
                 _buildGridItem(
-                    'Make offline appointment', Icons.calendar_today),
-                _buildGridItem('Kesehatan Mental', Icons.mood),
+                  'Make Offline Appointment',
+                  Icons.calendar_today,
+                  () {},
+                ),
+                _buildGridItem(
+                  'Mental Health',
+                  Icons.mood,
+                  () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Text('Feature Unavailable'),
+                          content:
+                              Text('Sorry, this feature is still unavailable.'),
+                          actions: [
+                            TextButton(
+                              child: Text('OK'),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
+                ),
               ],
             ),
           ),
@@ -122,9 +160,9 @@ class _HomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildGridItem(String title, IconData icon) {
+  Widget _buildGridItem(String title, IconData icon, VoidCallback onTap) {
     return InkWell(
-      onTap: () {},
+      onTap: onTap,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
