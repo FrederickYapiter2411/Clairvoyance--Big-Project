@@ -1,27 +1,60 @@
 import 'package:clairvoyant_tubes/screens/provider.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:clairvoyant_tubes/screens/home.dart';
 import 'package:clairvoyant_tubes/screens/register.dart';
 
-class Login extends StatelessWidget {
-  const Login({super.key});
+class Login extends StatefulWidget {
+  const Login({Key? key}) : super(key: key);
+
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  final TextEditingController _emailC = TextEditingController();
+  final TextEditingController _passwordC = TextEditingController();
+  Color floatingColor1 = Colors.grey;
+  Color floatingColor2 = Colors.grey;
+  String? err1;
+  String? err2;
+  String tempEmail = '';
+  String tempPassword = '';
+
+  void _login(BuildContext ctx) {
+    List<Map<String, dynamic>> accountExist =
+        listUsers.where((user) => user["email"] == _emailC.text).toList();
+
+    if (accountExist.isNotEmpty) {
+      Map<String, dynamic> account = accountExist[0];
+
+      if (account["email"] == _emailC.text &&
+          account["password"] == _passwordC.text) {
+        User user = User(
+          username: account['user_name'],
+          email: account['email'],
+          password: account['password'],
+        );
+
+        Navigator.of(ctx).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => Home(user: user)),
+          (route) => false,
+        );
+      } else {
+        setState(() {
+          err1 = 'Wrong email and/or password';
+          err2 = 'Wrong email and/or password';
+        });
+      }
+    } else {
+      setState(() {
+        err1 = 'Wrong email and/or password';
+        err2 = 'Wrong email and/or password';
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    var userProvider = Provider.of<UserProvider>(context);
-
-    TextEditingController inputUsername = TextEditingController();
-    TextEditingController inputPassword = TextEditingController();
-
-    Color floatingColor1 = Colors.grey;
-    Color floatingColor2 = Colors.grey;
-
-    String tempUsername = '';
-    String tempPassword = '';
-    String? err1;
-    String? err2;
-
     return Scaffold(
       body: SingleChildScrollView(
         padding: EdgeInsets.all(50),
@@ -37,22 +70,24 @@ class Login extends StatelessWidget {
             ),
             Focus(
               onFocusChange: (value) {
-                if (value) {
-                  floatingColor1 = Colors.redAccent;
-                } else {
-                  floatingColor1 = Colors.grey;
-                  if (tempUsername != inputUsername.text ||
-                      tempPassword != inputPassword.text) {
-                    err1 = null;
-                    err2 = null;
+                setState(() {
+                  if (value) {
+                    floatingColor1 = Colors.redAccent;
+                  } else {
+                    floatingColor1 = Colors.grey;
+                    if (tempEmail != _emailC.text ||
+                        tempPassword != _passwordC.text) {
+                      err1 = null;
+                      err2 = null;
+                    }
                   }
-                }
+                });
               },
               child: TextFormField(
-                controller: inputUsername,
+                controller: _emailC,
                 decoration: InputDecoration(
-                  labelText: 'Username',
-                  hintText: inputUsername.text.isEmpty ? 'testing' : null,
+                  labelText: 'Email',
+                  hintText: 'Enter your email',
                   hintStyle: TextStyle(color: Colors.grey),
                   enabledBorder: OutlineInputBorder(),
                   focusedBorder: OutlineInputBorder(
@@ -62,27 +97,30 @@ class Login extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Focus(
               onFocusChange: (value) {
-                if (value) {
-                  floatingColor2 = Colors.redAccent;
-                } else {
-                  floatingColor2 = Colors.grey;
-                  if (tempUsername != inputUsername.text ||
-                      tempPassword != inputPassword.text) {
-                    err1 = null;
-                    err2 = null;
+                setState(() {
+                  if (value) {
+                    floatingColor2 = Colors.redAccent;
+                  } else {
+                    floatingColor2 = Colors.grey;
+                    if (tempEmail != _emailC.text ||
+                        tempPassword != _passwordC.text) {
+                      err1 = null;
+                      err2 = null;
+                    }
                   }
-                }
+                });
               },
               child: TextFormField(
-                controller: inputPassword,
+                controller: _passwordC,
+                obscureText: true,
                 decoration: InputDecoration(
                   labelText: 'Password',
-                  hintText: inputPassword.text.isEmpty ? 'testing' : null,
+                  hintText: 'Enter your password',
                   hintStyle: TextStyle(color: Colors.grey),
                   enabledBorder: OutlineInputBorder(),
                   focusedBorder: OutlineInputBorder(
@@ -92,37 +130,26 @@ class Login extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            ElevatedButton(
-              onPressed: () {
-                FocusScope.of(context).unfocus();
-                if (inputUsername.text != 'testing' ||
-                    inputPassword.text != 'testing') {
-                  err1 = 'Wrong username and/or password';
-                  err2 = 'Wrong username and/or password';
-                  tempUsername = inputUsername.text;
-                  tempPassword = inputPassword.text;
-                } else {
-                  userProvider.login(inputUsername.text, inputPassword.text);
-                  if (userProvider.user != null) {
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => Home(
-                        username: '',
-                      ),
-                    ));
-                  }
-                }
-              },
-              child: Text('Log In'),
-              style: ElevatedButton.styleFrom(
-                minimumSize: Size(double.infinity, 50),
-                foregroundColor: Colors.white,
-                backgroundColor: Colors.blue,
+            SizedBox(
+              width: double.infinity,
+              height: 40,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  shadowColor: Colors.blue,
+                ),
+                onPressed: () {
+                  _login(context);
+                },
+                child: const Text(
+                  "Login",
+                  style: TextStyle(fontSize: 20),
+                ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Text(
@@ -132,42 +159,23 @@ class Login extends StatelessWidget {
             SizedBox(
               height: 15,
             ),
-            OutlinedButton(
-              onPressed: () {},
-              style: OutlinedButton.styleFrom(
-                minimumSize: Size(double.infinity, 50),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Text(
-                    'Log In with Gmail',
-                    style: TextStyle(color: Colors.black),
-                  )
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Don't have an account?"),
-                SizedBox(
-                  width: 5,
+                const Text(
+                  "Don't have an account?",
+                  style: TextStyle(fontSize: 20),
                 ),
+                const SizedBox(width: 5),
                 TextButton(
                   onPressed: () {
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => Register()),
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => const Register()),
                     );
                   },
-                  child: Text('Register'),
-                  style: TextButton.styleFrom(foregroundColor: Colors.blue),
+                  child: const Text(
+                    "Register",
+                    style: TextStyle(color: Colors.blue, fontSize: 20),
+                  ),
                 ),
               ],
             ),
