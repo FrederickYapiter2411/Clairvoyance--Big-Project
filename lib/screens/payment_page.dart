@@ -58,24 +58,52 @@ class _PaymentPageState extends State<PaymentPage> {
                   style: TextStyle(fontSize: 16),
                 ),
                 SizedBox(width: 10),
-                DropdownButton<String>(
-                  value: _selectedPaymentMethod,
-                  onChanged: (String? newValue) {
+                Expanded(
+                  child: DropdownButton<String>(
+                    value: _selectedPaymentMethod,
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        _selectedPaymentMethod = newValue!;
+                      });
+                    },
+                    items: <String>[
+                      'Credit Card',
+                      'PayPal',
+                      'Bank Transfer',
+                      'Cash on Delivery',
+                    ].map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                  ),
+                ),
+                SizedBox(width: 10),
+                PopupMenuButton<String>(
+                  onSelected: (String newValue) {
                     setState(() {
-                      _selectedPaymentMethod = newValue!;
+                      _selectedPaymentMethod = newValue;
                     });
                   },
-                  items: <String>[
-                    'Credit Card',
-                    'PayPal',
-                    'Bank Transfer',
-                    'Cash on Delivery',
-                  ].map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
+                  itemBuilder: (BuildContext context) => [
+                    PopupMenuItem(
+                      value: 'Credit Card',
+                      child: Text('Credit Card'),
+                    ),
+                    PopupMenuItem(
+                      value: 'PayPal',
+                      child: Text('PayPal'),
+                    ),
+                    PopupMenuItem(
+                      value: 'Bank Transfer',
+                      child: Text('Bank Transfer'),
+                    ),
+                    PopupMenuItem(
+                      value: 'Cash on Delivery',
+                      child: Text('Cash on Delivery'),
+                    ),
+                  ],
                 ),
               ],
             ),
