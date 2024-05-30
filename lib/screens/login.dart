@@ -34,7 +34,53 @@ class _LoginState extends State<Login> {
           email: account['email'],
           password: account['password'],
         );
-
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Container(
+            padding: const EdgeInsets.all(8),
+            height: 80,
+            decoration: const BoxDecoration(
+                color: Colors.green,
+                borderRadius: BorderRadius.all(Radius.circular(10))),
+            child: const Row(
+              children: [
+                Icon(
+                  Icons.check_circle,
+                  color: Colors.white,
+                  size: 40,
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                Expanded(
+                    child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Success",
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      "Login is successful",
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.white,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ))
+              ],
+            ),
+          ),
+          behavior: SnackBarBehavior.floating,
+          backgroundColor: Colors.transparent,
+          elevation: 3,
+        ));
         Navigator.of(ctx).pushAndRemoveUntil(
           MaterialPageRoute(builder: (context) => Home(user: user)),
           (route) => false,
@@ -44,12 +90,106 @@ class _LoginState extends State<Login> {
           err1 = 'Wrong email and/or password';
           err2 = 'Wrong email and/or password';
         });
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Container(
+            padding: const EdgeInsets.all(8),
+            height: 90,
+            decoration: const BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadius.all(Radius.circular(10))),
+            child: const Row(
+              children: [
+                Icon(
+                  Icons.warning_amber_rounded,
+                  color: Colors.white,
+                  size: 40,
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                Expanded(
+                    child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Oh no !!!!",
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      "Login is unsuccessful \nPlease try again!",
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.white,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ))
+              ],
+            ),
+          ),
+          behavior: SnackBarBehavior.floating,
+          backgroundColor: Colors.transparent,
+          elevation: 3,
+        ));
       }
     } else {
       setState(() {
         err1 = 'Wrong email and/or password';
         err2 = 'Wrong email and/or password';
       });
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Container(
+          padding: const EdgeInsets.all(8),
+          height: 90,
+          decoration: const BoxDecoration(
+              color: Colors.red,
+              borderRadius: BorderRadius.all(Radius.circular(10))),
+          child: const Row(
+            children: [
+              Icon(
+                Icons.warning_amber_rounded,
+                color: Colors.white,
+                size: 40,
+              ),
+              SizedBox(
+                width: 20,
+              ),
+              Expanded(
+                  child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Oh no !!!!",
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    "Login is unsuccessful \nPlease try again!",
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.white,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ))
+            ],
+          ),
+        ),
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: Colors.transparent,
+        elevation: 3,
+      ));
     }
   }
 
