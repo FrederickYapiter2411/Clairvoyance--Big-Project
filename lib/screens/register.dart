@@ -173,12 +173,15 @@ class _RegisterState extends State<Register> {
                   validation,
                   style: TextStyle(
                     color: validation == "Account successfully registered"
-                        ? Colors.green
+                        ? Colors.blue
                         : Colors.red,
-                    fontSize: 20,
+                    fontSize: 15,
                   ),
                 ),
               ),
+            ),
+            SizedBox(
+              height: 25,
             ),
             Text(
               'OR',
