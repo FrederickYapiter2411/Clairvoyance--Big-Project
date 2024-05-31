@@ -56,13 +56,14 @@ class _HomePageState extends State<Home> {
       ),
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(
-              'Welcome, $username!',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          if (_selectedIndex == 0) // Conditionally show the welcome message
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text(
+                'Welcome, $username!',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
             ),
-          ),
           Expanded(child: _children[_selectedIndex]),
         ],
       ),
@@ -102,7 +103,6 @@ class _HomePage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(),
           Expanded(
             child: GridView.count(
               crossAxisCount: 2,
