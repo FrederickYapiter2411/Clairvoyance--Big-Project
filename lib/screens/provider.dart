@@ -40,6 +40,11 @@ class UserProvider with ChangeNotifier {
       notifyListeners();
     }
   }
+
+  void setUser(User newUser) {
+    _user = newUser;
+    notifyListeners();
+  }
 }
 
 List<Map<String, dynamic>> listUsers = [

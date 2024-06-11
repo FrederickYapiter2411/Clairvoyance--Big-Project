@@ -2,6 +2,7 @@ import 'package:clairvoyant_tubes/screens/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:clairvoyant_tubes/screens/home.dart';
 import 'package:clairvoyant_tubes/screens/register.dart';
+import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -81,6 +82,7 @@ class _LoginState extends State<Login> {
           backgroundColor: Colors.transparent,
           elevation: 3,
         ));
+        Provider.of<UserProvider>(context, listen: false).setUser(user);
         Navigator.of(ctx).pushAndRemoveUntil(
           MaterialPageRoute(builder: (context) => Home(user: user)),
           (route) => false,
