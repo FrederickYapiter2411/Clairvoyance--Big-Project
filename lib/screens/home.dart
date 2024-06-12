@@ -46,12 +46,20 @@ class _HomePageState extends State<Home> {
         backgroundColor: Colors.blue,
         title: Text(title[_selectedIndex]),
         actions: [
-          IconButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const Inbox()));
-              },
-              icon: const Icon(Icons.mail))
+          Tooltip(
+            message: "Inbox",
+            child: Padding(
+              padding: const EdgeInsets.only(
+                  right: 14.0), // Adjust the padding as needed
+              child: IconButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => const Inbox()));
+                },
+                icon: const Icon(Icons.mail),
+              ),
+            ),
+          ),
         ],
       ),
       body: Column(
