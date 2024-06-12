@@ -97,24 +97,23 @@ class _CartPageState extends State<CartPage> {
                                   Text("Price: Rp.${item["price"]}"),
                                   Row(
                                     children: [
-                                      IconButton(
-                                        icon: Icon(Icons.remove),
-                                        onPressed: () {
-                                          setState(() {
-                                            if (item["amount"] > 1) {
-                                              item["amount"] -= 1;
-                                            }
-                                          });
-                                        },
-                                      ),
-                                      Text(item["amount"].toString()),
-                                      IconButton(
-                                        icon: Icon(Icons.add),
-                                        onPressed: () {
-                                          setState(() {
-                                            item["amount"] += 1;
-                                          });
-                                        },
+                                      Text("Amount: "),
+                                      SizedBox(
+                                        width: 150, // Adjust width as needed
+                                        child: Slider(
+                                          value: item["amount"].toDouble(),
+                                          min: 1,
+                                          max: 20, // Adjust max value as needed
+                                          divisions: 19,
+                                          label: item["amount"].toString(),
+                                          onChanged: (double newValue) {
+                                            setState(() {
+                                              item["amount"] = newValue.toInt();
+                                              widget.onCartUpdated(
+                                                  widget.cartItems);
+                                            });
+                                          },
+                                        ),
                                       ),
                                     ],
                                   ),
