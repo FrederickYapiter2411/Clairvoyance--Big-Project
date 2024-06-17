@@ -1,205 +1,100 @@
-import 'package:clairvoyant_tubes/screens/login.dart';
+import 'package:clairvoyant_tubes/screens/provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ProfilePage extends StatelessWidget {
+  const ProfilePage ({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            'PROFIL',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 16),
-          const Text(
-            'Halo, User!',
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.grey,
-            ),
-          ),
-          const SizedBox(height: 16),
-          Row(
+    UserProvider userProvider = Provider.of<UserProvider>(context);
+    User? user = userProvider.user;
+
+    if (user == null) {
+      return const Center(
+        child: Text('No user logged in.'),
+      );
+    }
+    return  Scaffold(
+      body: Center(
+        child: Column(
             children: [
-              Expanded(
-                child: InkWell(
-                  onTap: () {
-                    // Add code here to navigate to the edit profile page.
-                  },
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: Colors.blue),
-                    ),
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.edit,
-                          size: 24,
-                          color: Colors.blue,
-                        ),
-                        SizedBox(width: 8),
-                        Text(
-                          'Edit Profil',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.blue,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+              const SizedBox(height: 10,),
+              const CircleAvatar(
+                backgroundImage: AssetImage("lib/images/profilePic.jpg"),
+                maxRadius: 130,
               ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: InkWell(
-                  onTap: () {
-                    // Add code here to navigate to the security settings page.
-                  },
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: Colors.blue),
-                    ),
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.security,
-                          size: 24,
-                          color: Colors.blue,
-                        ),
-                        SizedBox(width: 8),
-                        Text(
-                          'Keamanan',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.blue,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 16),
-          Row(
-            children: [
-              Expanded(
-                child: InkWell(
-                  onTap: () {
-                    // Add code here to navigate to the notification settings page.
-                  },
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: Colors.blue),
-                    ),
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.notifications,
-                          size: 24,
-                          color: Colors.blue,
-                        ),
-                        SizedBox(width: 8),
-                        Text(
-                          'Notifikasi',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.blue,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: InkWell(
-                  onTap: () {
-                    // Add code here to navigate to the about us page.
-                  },
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: Colors.blue),
-                    ),
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.info,
-                          size: 24,
-                          color: Colors.blue,
-                        ),
-                        SizedBox(width: 8),
-                        Text(
-                          'Tentang Kami',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.blue,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 16),
-          InkWell(
-            onTap: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => Login()),
-              );
-            },
-            child: Container(
-              padding: const EdgeInsets.symmetric(vertical: 12),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                border: Border.all(color: Colors.blue),
-              ),
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              const SizedBox(height: 20),
+              Column(
                 children: [
-                  Icon(
-                    Icons.logout,
-                    size: 24,
-                    color: Colors.blue,
-                  ),
-                  SizedBox(width: 8),
-                  Text(
-                    'Keluar',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.blue,
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.yellow,
+                      minimumSize: const Size(180, 50)
                     ),
+                    child: const Text("Edit Profile", style: TextStyle(color: Colors.black)),
                   ),
+                  const SizedBox(height: 30,),
+
+                  Row(
+                    children: [
+                      const SizedBox(
+                        width: 80 ,
+                        child: Center(
+                          child: Icon(Icons.person, size: 40, ))),
+
+                      SizedBox(
+                        height: 40,
+                        child: Text(
+                          ' ${user.username}',
+                          style: const TextStyle(fontSize: 30),
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  const SizedBox(height: 30,),
+
+                  Row(
+                    children: [
+                      const SizedBox(
+                        width: 80 ,
+                        child: Center(
+                          child: Icon(Icons.mail, size: 40, ))),
+
+                      SizedBox(
+                        height: 40,
+                        child: Text(
+                          ' ${user.email}',
+                          style: const TextStyle(fontSize: 30),
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  Row(
+                    children: [
+                      const SizedBox(
+                        width: 80 ,
+                        child: Center(
+                          child: Icon(Icons.calendar_month, size: 40, ))),
+
+                      SizedBox(
+                        height: 40,
+                        child: Text(
+                          ' ${user.email}',
+                          style: const TextStyle(fontSize: 30),
+                        ),
+                      ),
+                    ],
+                  ),
+
                 ],
-              ),
-            ),
+              )
+            ],
           ),
-        ],
-      ),
+        ),  
     );
   }
 }
