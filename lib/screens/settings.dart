@@ -11,7 +11,7 @@ class SettingsPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Settings"),
+        title: const Text("Settings"),
       ),
       drawer: Drawer(
         child: ListView(
@@ -21,7 +21,7 @@ class SettingsPage extends StatelessWidget {
               decoration: BoxDecoration(
                 color: isDarkMode ? Colors.grey[850] : Colors.blue,
               ),
-              child: Text(
+              child: const Text(
                 'Settings Menu',
                 style: TextStyle(
                   color: Colors.white,
@@ -30,8 +30,8 @@ class SettingsPage extends StatelessWidget {
               ),
             ),
             ListTile(
-              leading: Icon(Icons.brightness_4),
-              title: Text('Dark mode'),
+              leading: const Icon(Icons.brightness_4),
+              title: const Text('Dark mode'),
               trailing: Switch(
                 value: isDarkMode,
                 onChanged: (value) {
@@ -40,29 +40,29 @@ class SettingsPage extends StatelessWidget {
               ),
             ),
             ListTile(
-              leading: Icon(Icons.language),
-              title: Text('Language'),
+              leading: const Icon(Icons.language),
+              title: const Text('Language'),
               onTap: () {
                 // Handle language selection
               },
             ),
             ListTile(
-              leading: Icon(Icons.notifications),
-              title: Text('Notifications'),
+              leading: const Icon(Icons.notifications),
+              title: const Text('Notifications'),
               onTap: () {
                 // Handle notifications settings
               },
             ),
             ListTile(
-              leading: Icon(Icons.info),
-              title: Text('About Us'),
+              leading: const Icon(Icons.info),
+              title: const Text('About Us'),
               onTap: () {
                 // Handle about us
               },
             ),
             ListTile(
-              leading: Icon(Icons.logout),
-              title: Text(
+              leading: const Icon(Icons.logout),
+              title: const Text(
                 'Logout',
                 style: TextStyle(
                   color: Colors.red,
@@ -71,7 +71,7 @@ class SettingsPage extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(
-                    builder: (context) => Login(),
+                    builder: (context) => const Login(),
                   ),
                   (route) => false,
                 );
@@ -80,7 +80,7 @@ class SettingsPage extends StatelessWidget {
           ],
         ),
       ),
-      body: Center(
+      body: const Center(
         child: Text("Settings Page Content"),
       ),
     );

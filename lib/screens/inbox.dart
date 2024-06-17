@@ -38,8 +38,8 @@ class _InboxState extends State<Inbox> {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               ListTile(
-                leading: Icon(Icons.delete),
-                title: Text('Delete All Messages'),
+                leading: const Icon(Icons.delete),
+                title: const Text('Delete All Messages'),
                 onTap: () {
                   // Handle deleting all messages
                   Navigator.pop(context);
@@ -69,8 +69,8 @@ class _InboxState extends State<Inbox> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _showBottomSheet(context),
-        child: Icon(Icons.add),
-        backgroundColor: Color.fromARGB(255, 102, 03, 219),
+        backgroundColor: const Color.fromARGB(255, 102, 03, 219),
+        child: const Icon(Icons.add),
       ),
     );
   }

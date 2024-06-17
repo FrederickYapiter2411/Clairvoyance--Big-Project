@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:clairvoyant_tubes/screens/inbox.dart';
 
+// ignore: must_be_immutable
 class InboxMessage extends StatelessWidget {
   InboxMessage(
       {super.key,

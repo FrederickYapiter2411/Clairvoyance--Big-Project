@@ -1,5 +1,7 @@
+
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class DetailChat extends StatelessWidget {
   DetailChat({super.key, required this.gambar, required this.name});
 

@@ -52,10 +52,10 @@ class _RegisterState extends State<Register> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(50),
+        padding: const EdgeInsets.all(50),
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Focus(
@@ -69,8 +69,8 @@ class _RegisterState extends State<Register> {
                 decoration: InputDecoration(
                   labelText: 'Username',
                   hintText: 'Enter your username',
-                  hintStyle: TextStyle(color: Colors.grey),
-                  enabledBorder: OutlineInputBorder(),
+                  hintStyle: const TextStyle(color: Colors.grey),
+                  enabledBorder: const OutlineInputBorder(),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: floatingColor1),
                   ),
@@ -91,8 +91,8 @@ class _RegisterState extends State<Register> {
                 decoration: InputDecoration(
                   labelText: 'Email',
                   hintText: 'Enter your email',
-                  hintStyle: TextStyle(color: Colors.grey),
-                  enabledBorder: OutlineInputBorder(),
+                  hintStyle: const TextStyle(color: Colors.grey),
+                  enabledBorder: const OutlineInputBorder(),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: floatingColor2),
                   ),
@@ -114,8 +114,8 @@ class _RegisterState extends State<Register> {
                 decoration: InputDecoration(
                   labelText: 'Password',
                   hintText: 'Enter your password',
-                  hintStyle: TextStyle(color: Colors.grey),
-                  enabledBorder: OutlineInputBorder(),
+                  hintStyle: const TextStyle(color: Colors.grey),
+                  enabledBorder: const OutlineInputBorder(),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: floatingColor3),
                   ),
@@ -140,8 +140,8 @@ class _RegisterState extends State<Register> {
                 decoration: InputDecoration(
                   labelText: 'Confirm Password',
                   hintText: 'Re-enter your password',
-                  hintStyle: TextStyle(color: Colors.grey),
-                  enabledBorder: OutlineInputBorder(),
+                  hintStyle: const TextStyle(color: Colors.grey),
+                  enabledBorder: const OutlineInputBorder(),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: floatingColor3),
                   ),
@@ -180,14 +180,14 @@ class _RegisterState extends State<Register> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 25,
             ),
-            Text(
+            const Text(
               'OR',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Row(

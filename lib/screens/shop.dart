@@ -129,12 +129,12 @@ class _ShopState extends State<Shop> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Text("Item Already in Cart"),
-            content: Text("This item is already in your cart."),
+            title: const Text("Item Already in Cart"),
+            content: const Text("This item is already in your cart."),
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(context),
-                child: Text("OK"),
+                child: const Text("OK"),
               ),
             ],
           );
@@ -174,7 +174,7 @@ class _ShopState extends State<Shop> {
         title: const Center(child: Text("List Obat")),
         actions: [
           IconButton(
-            icon: Icon(Icons.shopping_cart),
+            icon: const Icon(Icons.shopping_cart),
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => CartPage(

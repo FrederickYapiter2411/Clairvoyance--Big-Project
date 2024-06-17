@@ -216,15 +216,15 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(50),
+        padding: const EdgeInsets.all(50),
         child: Column(
           children: [
             Center(
               child: Container(
-                padding: EdgeInsetsDirectional.only(top: 70),
+                padding: const EdgeInsetsDirectional.only(top: 70),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Focus(
@@ -247,8 +247,8 @@ class _LoginState extends State<Login> {
                 decoration: InputDecoration(
                   labelText: 'Email',
                   hintText: 'Enter your email',
-                  hintStyle: TextStyle(color: Colors.grey),
-                  enabledBorder: OutlineInputBorder(),
+                  hintStyle: const TextStyle(color: Colors.grey),
+                  enabledBorder: const OutlineInputBorder(),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: floatingColor1),
                   ),
@@ -280,8 +280,8 @@ class _LoginState extends State<Login> {
                 decoration: InputDecoration(
                   labelText: 'Password',
                   hintText: 'Enter your password',
-                  hintStyle: TextStyle(color: Colors.grey),
-                  enabledBorder: OutlineInputBorder(),
+                  hintStyle: const TextStyle(color: Colors.grey),
+                  enabledBorder: const OutlineInputBorder(),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: floatingColor2),
                   ),
@@ -311,11 +311,11 @@ class _LoginState extends State<Login> {
             const SizedBox(
               height: 15,
             ),
-            Text(
+            const Text(
               'OR',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Row(

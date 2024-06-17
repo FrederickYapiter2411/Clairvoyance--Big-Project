@@ -42,7 +42,7 @@ class MessageCard extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              Divider(),
+              const Divider(),
               Row(
                 children: [
                   Text(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:clairvoyant_tubes/screens/detail_chat.dart';
 
+// ignore: must_be_immutable
 class ChatPage extends StatelessWidget {
   List imgs = [
     "doctor1.jpg",
@@ -10,6 +11,8 @@ class ChatPage extends StatelessWidget {
     "doctor5.jpg",
     "doctor6.jpg",
   ];
+
+  ChatPage({super.key});
 
   void _showBottomSheet(BuildContext context) {
     showModalBottomSheet(
@@ -21,16 +24,16 @@ class ChatPage extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               ListTile(
-                leading: Icon(Icons.chat),
-                title: Text('New Chat'),
+                leading: const Icon(Icons.chat),
+                title: const Text('New Chat'),
                 onTap: () {
                   // Handle starting a new chat
                   Navigator.pop(context);
                 },
               ),
               ListTile(
-                leading: Icon(Icons.settings),
-                title: Text('Chat Settings'),
+                leading: const Icon(Icons.settings),
+                title: const Text('Chat Settings'),
                 onTap: () {
                   // Handle chat settings
                   Navigator.pop(context);
@@ -74,7 +77,7 @@ class ChatPage extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Colors.black12,
                       blurRadius: 10,
@@ -85,7 +88,7 @@ class ChatPage extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
+                    SizedBox(
                       width: 300,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -137,7 +140,7 @@ class ChatPage extends StatelessWidget {
                       textDirection: TextDirection.rtl,
                       children: [
                         Center(
-                          child: Container(
+                          child: SizedBox(
                             height: 65,
                             width: 65,
                             child: ClipRRect(
@@ -230,8 +233,8 @@ class ChatPage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _showBottomSheet(context),
-        child: Icon(Icons.more_horiz),
-        backgroundColor: Color.fromARGB(255, 102, 03, 219),
+        backgroundColor: const Color.fromARGB(255, 102, 03, 219),
+        child: const Icon(Icons.more_horiz),
       ),
     );
   }
