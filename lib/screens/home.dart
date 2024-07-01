@@ -1,3 +1,4 @@
+import 'package:clairvoyant_tubes/screens/appointment.dart';
 import 'package:clairvoyant_tubes/screens/chat.dart';
 import 'package:clairvoyant_tubes/screens/inbox.dart';
 import 'package:clairvoyant_tubes/screens/provider.dart';
@@ -134,7 +135,10 @@ class _HomePage extends StatelessWidget {
                 _buildGridItem(
                   'Make Offline Appointment',
                   Icons.calendar_today,
-                  () {},
+                  () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => MakeAppointment()));
+                  },
                 ),
                 _buildGridItem(
                   'Mental Health',

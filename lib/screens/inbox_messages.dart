@@ -6,13 +6,13 @@ class InboxMessage extends StatelessWidget {
       {super.key,
       required this.judul,
       required this.tempat,
-      required this.mulai,
-      required this.selesai});
+      required this.tanggal,
+      required this.waktu});
 
   String judul;
   String tempat;
-  String mulai;
-  String selesai;
+  String tanggal;
+  String waktu;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,9 @@ class InboxMessage extends StatelessWidget {
               style: TextStyle(
                   color: Colors.grey[600], fontWeight: FontWeight.bold)),
           const SizedBox(height: 15),
-          Text("$mulai s/d $selesai", style: const TextStyle(color: Colors.grey)),
+          Text("Tanggal : $tanggal",
+              style: const TextStyle(color: Colors.grey)),
+          Text("Waktu : $waktu", style: const TextStyle(color: Colors.grey)),
           const Spacer(),
           TextButton(
               onPressed: () {

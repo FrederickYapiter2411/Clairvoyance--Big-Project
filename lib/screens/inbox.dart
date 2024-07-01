@@ -1,5 +1,6 @@
+import 'package:clairvoyant_tubes/data/inbox_data.dart';
 import 'package:flutter/material.dart';
-import 'package:clairvoyant_tubes/models/messages.dart';
+// import 'package:clairvoyant_tubes/models/messages.dart';
 import 'package:clairvoyant_tubes/widgets/card.dart';
 
 class Inbox extends StatefulWidget {
@@ -10,24 +11,6 @@ class Inbox extends StatefulWidget {
 }
 
 class _InboxState extends State<Inbox> {
-  List<MessageData> messageDatas = [
-    MessageData(
-        judul: "Check-Up",
-        tempat: "Ruangan A Lantai 3",
-        mulai: "08.00",
-        selesai: "10.00"),
-    MessageData(
-        judul: "Pengambilan Obat",
-        tempat: "Gudang Farmasi",
-        mulai: "10.00",
-        selesai: "10.30"),
-    MessageData(
-        judul: "Rontgen",
-        tempat: "Ruang Radiologi",
-        mulai: "13.00",
-        selesai: "15.00")
-  ];
-
   void _showBottomSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
@@ -64,7 +47,7 @@ class _InboxState extends State<Inbox> {
         padding: const EdgeInsets.all(20),
         children: [
           ...messageDatas
-              .map((e) => MessageCard(e.judul, e.tempat, e.mulai, e.selesai)),
+              .map((e) => MessageCard(e.judul, e.tempat, e.tanggal, e.waktu)),
         ],
       ),
       floatingActionButton: FloatingActionButton(

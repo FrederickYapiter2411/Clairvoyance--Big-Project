@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:clairvoyant_tubes/screens/inbox_messages.dart';
 
 class MessageCard extends StatelessWidget {
-  const MessageCard(this.judul, this.tempat, this.mulai, this.selesai,
+  const MessageCard(this.judul, this.tempat, this.tanggal, this.waktu,
       {super.key});
 
   final String judul;
   final String tempat;
-  final String mulai;
-  final String selesai;
+  final String tanggal;
+  final String waktu;
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +18,8 @@ class MessageCard extends StatelessWidget {
             builder: (context) => InboxMessage(
                   judul: judul,
                   tempat: tempat,
-                  mulai: mulai,
-                  selesai: selesai,
+                  tanggal: tanggal,
+                  waktu: waktu,
                 )));
       },
       child: Card(
@@ -42,11 +42,11 @@ class MessageCard extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              Divider(),
+              const Divider(),
               Row(
                 children: [
                   Text(
-                    "$mulai s/d $selesai",
+                    "$tanggal, $waktu",
                     style: const TextStyle(fontSize: 12),
                   ),
                   const Spacer(),
