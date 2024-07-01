@@ -11,49 +11,49 @@ class DetailMed extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Icon> rating = List.generate(
         (med["rate"] ?? 0) as int,
-        (index) => Icon(
+        (index) => const Icon(
               Icons.star,
               color: Colors.orange,
             ));
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text("Detail")),
+        title: const Center(child: Text("Detail")),
       ),
       body: ListView(
         children: [
           Image.network(med["img"] as String),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Center(
             child: Text(
               med["name"] as String,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: rating,
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           Center(
             child: Text(
               "Price: Rp ${(med["price"] ?? 0)}",
-              style: TextStyle(fontWeight: FontWeight.w600),
+              style: const TextStyle(fontWeight: FontWeight.w600),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 40,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25.0),
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 border: Border.symmetric(
                   horizontal: BorderSide(
                     color: Colors.black,
@@ -67,15 +67,15 @@ class DetailMed extends StatelessWidget {
                   children: [
                     Column(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.add_box,
                           color: Colors.blue,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 5,
                         ),
-                        Text("Price"),
-                        SizedBox(
+                        const Text("Price"),
+                        const SizedBox(
                           height: 5,
                         ),
                         Text("Rp ${(med["price"] ?? 0)}"),
@@ -83,15 +83,15 @@ class DetailMed extends StatelessWidget {
                     ),
                     Column(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.category,
                           color: Colors.blue,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 5,
                         ),
-                        Text("Classification"),
-                        SizedBox(
+                        const Text("Classification"),
+                        const SizedBox(
                           height: 5,
                         ),
                         Text(med["classification"] as String),
@@ -102,7 +102,7 @@ class DetailMed extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 40,
           ),
           Padding(
@@ -110,18 +110,18 @@ class DetailMed extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   "Description",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Text(med['desc'] as String),
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 100,
           ),
           Center(
@@ -130,7 +130,7 @@ class DetailMed extends StatelessWidget {
                 addToCart(med); // Add item to cart
                 Navigator.pop(context); // Navigate back to previous screen
               },
-              child: Text("Add to Cart"),
+              child: const Text("Add to Cart"),
             ),
           ),
         ],

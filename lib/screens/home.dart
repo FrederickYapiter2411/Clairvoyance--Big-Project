@@ -23,8 +23,8 @@ class _HomePageState extends State<Home> {
 
   final List<Widget> _children = [
     _HomePage(),
-    TransactionHistory(),
-    ProfilePage(),
+    const TransactionHistory(),
+    const ProfilePage(),
     SettingsPage(),
   ];
 
@@ -70,7 +70,7 @@ class _HomePageState extends State<Home> {
               padding: const EdgeInsets.all(16.0),
               child: Text(
                 'Welcome, $username!',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
             ),
           Expanded(child: _children[_selectedIndex]),
@@ -129,7 +129,7 @@ class _HomePage extends StatelessWidget {
                   Icons.store_rounded,
                   () {
                     Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) => Shop()));
+                        .push(MaterialPageRoute(builder: (context) => const Shop()));
                   },
                 ),
                 _buildGridItem(
@@ -148,12 +148,12 @@ class _HomePage extends StatelessWidget {
                       context: context,
                       builder: (BuildContext context) {
                         return AlertDialog(
-                          title: Text('Feature Unavailable'),
+                          title: const Text('Feature Unavailable'),
                           content:
-                              Text('Sorry, this feature is still unavailable.'),
+                              const Text('Sorry, this feature is still unavailable.'),
                           actions: [
                             TextButton(
-                              child: Text('OK'),
+                              child: const Text('OK'),
                               onPressed: () {
                                 Navigator.of(context).pop();
                               },

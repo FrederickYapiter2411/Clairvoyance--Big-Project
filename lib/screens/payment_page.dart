@@ -28,7 +28,7 @@ class _PaymentPageState extends State<PaymentPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Payment'),
+        title: const Text('Payment'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -36,28 +36,28 @@ class _PaymentPageState extends State<PaymentPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(
+            const Text(
               'Selected Items:',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text(
               widget.medDetails,
-              style: TextStyle(fontSize: 14),
+              style: const TextStyle(fontSize: 14),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Text(
               'Total Price: Rp.${widget.totalPrice}',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Row(
               children: [
-                Text(
+                const Text(
                   'Choose payment method:',
                   style: TextStyle(fontSize: 16),
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 Expanded(
                   child: DropdownButton<String>(
                     value: _selectedPaymentMethod,
@@ -79,7 +79,7 @@ class _PaymentPageState extends State<PaymentPage> {
                     }).toList(),
                   ),
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 PopupMenuButton<String>(
                   onSelected: (String newValue) {
                     setState(() {
@@ -87,19 +87,19 @@ class _PaymentPageState extends State<PaymentPage> {
                     });
                   },
                   itemBuilder: (BuildContext context) => [
-                    PopupMenuItem(
+                    const PopupMenuItem(
                       value: 'Credit Card',
                       child: Text('Credit Card'),
                     ),
-                    PopupMenuItem(
+                    const PopupMenuItem(
                       value: 'PayPal',
                       child: Text('PayPal'),
                     ),
-                    PopupMenuItem(
+                    const PopupMenuItem(
                       value: 'Bank Transfer',
                       child: Text('Bank Transfer'),
                     ),
-                    PopupMenuItem(
+                    const PopupMenuItem(
                       value: 'Cash on Delivery',
                       child: Text('Cash on Delivery'),
                     ),
@@ -107,10 +107,10 @@ class _PaymentPageState extends State<PaymentPage> {
                 ),
               ],
             ),
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
             ElevatedButton(
               onPressed: () => _finalizePayment(context),
-              child: Text('Finalize Payment'),
+              child: const Text('Finalize Payment'),
             ),
           ],
         ),
@@ -134,12 +134,12 @@ class _PaymentPageState extends State<PaymentPage> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => TransactionHistory(),
+        builder: (context) => const TransactionHistory(),
       ),
     );
 
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
+      const SnackBar(
         content: Text('Payment confirmed. Transaction completed.'),
         duration: Duration(seconds: 5),
       ),

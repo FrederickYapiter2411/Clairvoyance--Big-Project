@@ -42,7 +42,7 @@ class _CartPageState extends State<CartPage> {
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: (context) => TransactionHistory(),
+                builder: (context) => const TransactionHistory(),
               ),
             );
           },
@@ -56,13 +56,13 @@ class _CartPageState extends State<CartPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Cart"),
+        title: const Text("Cart"),
       ),
       body: Column(
         children: [
           Expanded(
             child: widget.cartItems.isEmpty
-                ? Center(child: Text("Keranjang kosong!"))
+                ? const Center(child: Text("Keranjang kosong!"))
                 : ListView.builder(
                     itemCount: widget.cartItems.length,
                     itemBuilder: (context, index) {
@@ -78,7 +78,7 @@ class _CartPageState extends State<CartPage> {
                         background: Container(
                           color: Colors.red,
                           alignment: Alignment.centerRight,
-                          child: Padding(
+                          child: const Padding(
                             padding: EdgeInsets.only(right: 20),
                             child: Icon(Icons.delete, color: Colors.white),
                           ),
@@ -89,7 +89,7 @@ class _CartPageState extends State<CartPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(item["desc"] as String),
-                              SizedBox(height: 5),
+                              const SizedBox(height: 5),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -97,7 +97,7 @@ class _CartPageState extends State<CartPage> {
                                   Text("Price: Rp.${item["price"]}"),
                                   Row(
                                     children: [
-                                      Text("Amount: "),
+                                      const Text("Amount: "),
                                       SizedBox(
                                         width: 150, // Adjust width as needed
                                         child: Slider(
@@ -122,7 +122,7 @@ class _CartPageState extends State<CartPage> {
                             ],
                           ),
                           trailing: IconButton(
-                            icon: Icon(Icons.remove_shopping_cart),
+                            icon: const Icon(Icons.remove_shopping_cart),
                             onPressed: () {
                               setState(() {
                                 widget.cartItems.removeAt(index);
@@ -135,16 +135,16 @@ class _CartPageState extends State<CartPage> {
                     },
                   ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Text(
             'Total Price: Rp.${calculateTotalPrice()}',
-            style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           ElevatedButton(
             onPressed:
                 hasItemsInCart ? () => _navigateToPayment(context) : null,
-            child: Text('Make Payment'),
+            child: const Text('Make Payment'),
           ),
         ],
       ),

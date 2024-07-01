@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
           darkTheme: ThemeData.dark(),
           themeMode:
               themeProvider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
-          home: Login(),
+          home: const Login(),
           debugShowCheckedModeBanner: false,
         );
       },
