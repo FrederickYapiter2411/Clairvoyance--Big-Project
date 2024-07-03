@@ -21,12 +21,27 @@ class SettingsPage extends StatelessWidget {
               decoration: BoxDecoration(
                 color: isDarkMode ? Colors.grey[850] : Colors.blue,
               ),
-              child: const Text(
-                'Settings Menu',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                ),
+              child: Stack(
+                children: [
+                  ClipPath(
+                    clipper: BannerClipper(),
+                    child: Container(
+                      width: double.infinity,
+                      height: double.infinity,
+                      color: Colors.blueGrey,
+                      child: Center(
+                        child: Text(
+                          'Settings Menu',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
             ListTile(
@@ -84,5 +99,23 @@ class SettingsPage extends StatelessWidget {
         child: Text("Settings Page Content"),
       ),
     );
+  }
+}
+
+// Custom Clipper for Banner
+class BannerClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    Path path = Path();
+    path.lineTo(0, size.height);
+    path.lineTo(size.width, size.height - 30); // Adjust the slant height here
+    path.lineTo(size.width, 0);
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
+    return false;
   }
 }
