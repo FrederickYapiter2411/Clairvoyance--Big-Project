@@ -1,15 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:clairvoyant_tubes/screens/detail_chat.dart';
 
-// ignore: must_be_immutable
 class ChatPage extends StatelessWidget {
-  List imgs = [
+  final List<String> imgs = [
     "doctor1.jpg",
     "doctor2.jpg",
     "doctor3.jpg",
     "doctor4.jpg",
     "doctor5.jpg",
     "doctor6.jpg",
+  ];
+
+  final List<bool> activeStatus = [
+    true, // doctor1
+    false, // doctor2
+    true, // doctor3
+    false, // doctor4
+    true, // doctor5
+    true, // doctor6
   ];
 
   ChatPage({super.key});
@@ -48,6 +57,16 @@ class ChatPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Filter active doctors for the carousel
+    List<int> activeIndexes = [];
+    List<String> activeImgs = [];
+    for (int i = 0; i < imgs.length; i++) {
+      if (activeStatus[i]) {
+        activeImgs.add(imgs[i]);
+        activeIndexes.add(i);
+      }
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Messages"),
@@ -118,7 +137,7 @@ class ChatPage extends StatelessWidget {
               height: 90,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: 6,
+                itemCount: imgs.length,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
                   return Container(
@@ -162,8 +181,10 @@ class ChatPage extends StatelessWidget {
                             shape: BoxShape.circle,
                           ),
                           child: Container(
-                            decoration: const BoxDecoration(
-                              color: Colors.green,
+                            decoration: BoxDecoration(
+                              color: activeStatus[index]
+                                  ? Colors.green
+                                  : Colors.grey,
                               shape: BoxShape.circle,
                             ),
                           ),
@@ -173,6 +194,53 @@ class ChatPage extends StatelessWidget {
                   );
                 },
               ),
+            ),
+            const SizedBox(height: 20),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Text(
+                "Better View",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+            ),
+            const SizedBox(height: 20),
+            CarouselSlider(
+              options: CarouselOptions(
+                height: 300.0,
+                autoPlay: true,
+                enlargeCenterPage: true,
+              ),
+              items: activeImgs.map((img) {
+                int index = activeImgs.indexOf(img);
+                return Builder(
+                  builder: (BuildContext context) {
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => DetailChat(
+                              gambar:
+                                  "lib/images/${imgs[activeIndexes[index]]}",
+                              name: "Doctor ${activeIndexes[index] + 1}",
+                            ),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          image: DecorationImage(
+                            image: AssetImage("lib/images/$img"),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                );
+              }).toList(),
             ),
             const SizedBox(height: 10),
             const Padding(
@@ -185,7 +253,7 @@ class ChatPage extends StatelessWidget {
             const SizedBox(height: 5),
             ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: 6,
+              itemCount: imgs.length,
               shrinkWrap: true,
               itemBuilder: (context, index) {
                 return Padding(
