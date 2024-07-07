@@ -35,6 +35,8 @@ class _LoginState extends State<Login> {
           username: account['user_name'],
           email: account['email'],
           password: account['password'],
+          profile: account['profile'],
+          birthdate: account['birthdate']
         );
         setState(() {
           isLoading = true;

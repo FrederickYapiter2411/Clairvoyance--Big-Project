@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.6
   provider: ^6.1.2
   carousel_slider: ^4.0.0
+  image_picker: ^1.1.2
 
 dev_dependencies:
   flutter_test:
@@ -62,7 +63,7 @@ flutter:
     - lib/images/doctor4.jpg
     - lib/images/doctor5.jpg
     - lib/images/doctor6.jpg
-    - lib/images/profilePic.jpg
+    - lib/images/profilePic/profilePic.jpg
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
